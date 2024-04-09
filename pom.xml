@@ -32,6 +32,7 @@
 		<module>spring-ai-spring-boot-autoconfigure</module>
 		<module>spring-ai-spring-boot-starters/spring-ai-starter-openai</module>
 		<module>spring-ai-spring-boot-starters/spring-ai-starter-azure-openai</module>
+		<module>spring-ai-spring-boot-starters/spring-ai-starter-astradb-store</module>
 		<module>spring-ai-spring-boot-starters/spring-ai-starter-ollama</module>
 		<module>spring-ai-spring-boot-starters/spring-ai-starter-transformers</module>
 		<module>spring-ai-spring-boot-starters/spring-ai-starter-chroma-store</module>
@@ -51,6 +52,7 @@
 		<module>vector-stores/spring-ai-neo4j-store</module>
 		<module>document-readers/pdf-reader</module>
 		<module>document-readers/tika-reader</module>
+		<module>vector-stores/spring-ai-astradb-store</module>
 		<module>vector-stores/spring-ai-pinecone</module>
 		<module>vector-stores/spring-ai-chroma</module>
 		<module>vector-stores/spring-ai-azure</module>

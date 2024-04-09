@@ -1,0 +1,61 @@
+{
+  "properties": [
+	{ "name": "spring.ai.vectorstore.astradb.token",
+      "type": "java.lang.String",
+      "description": "Also called Api Key, it acts as your credentials to use Astra DB.",
+      "defaultValue": "AstraCS:00000000000000000000000000000000000000000000000000" },
+    { "name": "spring.ai.vectorstore.astradb.api-endpoint",
+      "type": "java.lang.String",
+      "description": "Unique identifier of an Astra database, part of urls to access Stargate Api.",
+      "defaultValue": "https://DB_ID-DB_REGION.apps.astra.datastax.com" },
+	  { "name": "spring.ai.vectorstore.astradb.namespace",
+		  "type": "java.lang.String",
+		  "description": "Namespace is a logical grouping of tables in Astra DB.",
+		  "defaultValue": "default_keyspace" },
+	  { "name": "spring.ai.vectorstore.astradb.http-client.http-version",
+		  "type": "java.lang.String",
+		  "description": "Http protocol version to use for communication with Astra DB.",
+		  "defaultValue": "HTTP_1_1" },
+	  { "name": "spring.ai.vectorstore.astradb.http-client.http-redirect",
+		  "type": "java.lang.String",
+		  "description": "Http redirect policy to use for communication with Astra DB.",
+		  "defaultValue": "NORMAL" },
+	  { "name": "spring.ai.vectorstore.astradb.http-client.connect-timeout-seconds",
+		  "type": "java.lang.Integer",
+		  "description": "Http connection timeout in seconds for communication with Astra DB.",
+		  "defaultValue": "10" },
+	  { "name": "spring.ai.vectorstore.astradb.http-client.read-timeout-seconds",
+		  "type": "java.lang.Integer",
+		  "description": "Http read timeout in seconds for communication with Astra DB.",
+		  "defaultValue": "10" },
+	  { "name": "spring.ai.vectorstore.astradb.http-client.proxy.host",
+		  "type": "java.lang.String",
+		  "description": "Http proxy host to use for communication with Astra DB.",
+		  "defaultValue": "" },
+	  { "name": "spring.ai.vectorstore.astradb.http-client.proxy.port",
+		  "type": "java.lang.Integer",
+		  "description": "Http proxy port to use for communication with Astra DB.",
+		  "defaultValue": "0" },
+	  { "name": "spring.ai.vectorstore.astradb.http-client.retries.count",
+		  "type": "java.lang.Integer",
+		  "description": "Number of retries to attempt upon failure to communicate with Astra DB.",
+		  "defaultValue": "3" },
+	  { "name": "spring.ai.vectorstore.astradb.http-client.retries.delay-millis",
+		  "type": "java.lang.Integer",
+		  "description": "Delay in seconds between retries upon failure to communicate with Astra DB.",
+		  "defaultValue": "100" }
+  ],
+  "hints": [
+	{ "name": "spring.ai.vectorstore.astradb.http-client.http-version",
+	  "values": [
+			{ "value": "HTTP_1_1", "description": "Default Http protocol" },
+			{ "value": "HTTP_2",  "description": "Move to Http/2." }
+	   ]
+	},
+	{ "name": "spring.ai.vectorstore.astradb.http-client.http-redirect",
+	  "values": [
+			{ "value": "NORMA",       "description": "Returns results with the most recent data including an inflight LWT (uncommitted). Commits an inflight LWT as part of the read.Writes NOT supported." },
+			{ "value": "LOCAL_SERIAL", "description": "Same as SERIAL, but confined to the datacenter. Writes NOT supported." }
+	   ]
+	}
+]}

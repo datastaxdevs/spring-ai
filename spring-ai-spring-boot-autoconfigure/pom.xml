@@ -93,6 +93,14 @@
 			<version>4.1.100.Final</version>
 		</dependency>
 
+		<!-- AstraDB Vector Store -->
+		<dependency>
+			<groupId>org.springframework.ai</groupId>
+			<artifactId>spring-ai-astradb-store</artifactId>
+			<version>${project.parent.version}</version>
+			<optional>true</optional>
+		</dependency>
+
 		<!-- Milvus Vector Store -->
 		<dependency>
 			<groupId>org.springframework.ai</groupId>
