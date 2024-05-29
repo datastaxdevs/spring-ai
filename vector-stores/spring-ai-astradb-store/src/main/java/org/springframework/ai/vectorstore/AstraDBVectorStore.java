@@ -159,10 +159,10 @@ public class AstraDBVectorStore implements VectorStore, InitializingBean {
 	}
 
 	private boolean isVectorizedCollection() {
-		return astraDBCollection.getDefinition().getOptions() != null &&
-			   astraDBCollection.getDefinition().getOptions().getVector() != null &&
-			   astraDBCollection.getDefinition().getOptions().getVector().getService() != null &&
-			   astraDBCollection.getDefinition().getOptions().getVector().getService().getProvider() != null);
+		return astraDBCollection.getDefinition().getOptions() != null
+				&& astraDBCollection.getDefinition().getOptions().getVector() != null
+				&& astraDBCollection.getDefinition().getOptions().getVector().getService() != null
+				&& astraDBCollection.getDefinition().getOptions().getVector().getService().getProvider() != null;
 	}
 
 	/**
