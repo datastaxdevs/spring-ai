@@ -11,7 +11,7 @@
 	<artifactId>spring-ai-astradb-store</artifactId>
 	<packaging>jar</packaging>
 	<name>Spring AI AstraDB Vector Store</name>
-	<description>Spring AI AstraDB Vector Store</description>
+	<description>Spring AI Vector Store - AstraDB</description>
 	<url>https://github.com/spring-projects/spring-ai</url>
 
 	<scm>
@@ -21,7 +21,7 @@
 	</scm>
 
 	<properties>
-		<astra-db-java.version>1.0.0-beta1</astra-db-java.version>
+		<astra-db-java.version>1.2.0</astra-db-java.version>
 	</properties>
 
 	<dependencies>

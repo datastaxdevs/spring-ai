@@ -28,6 +28,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.ai.chat.prompt.ChatOptions;
 import org.springframework.ai.model.function.FunctionCallback;
 import org.springframework.ai.model.function.FunctionCallingOptions;
+import org.springframework.ai.vertexai.gemini.VertexAiGeminiChatModel.ChatModel;
 import org.springframework.boot.context.properties.NestedConfigurationProperty;
 import org.springframework.util.Assert;
 
@@ -77,10 +78,10 @@ public class VertexAiGeminiChatOptions implements FunctionCallingOptions, ChatOp
 	private @JsonProperty("modelName") String model;
 
 	/**
-	 * Tool Function Callbacks to register with the ChatClient.
+	 * Tool Function Callbacks to register with the ChatModel.
 	 * For Prompt Options the functionCallbacks are automatically enabled for the duration of the prompt execution.
 	 * For Default Options the functionCallbacks are registered but disabled by default. Use the enableFunctions to set the functions
-	 * from the registry to be used by the ChatClient chat completion requests.
+	 * from the registry to be used by the ChatModel chat completion requests.
 	 */
 	@NestedConfigurationProperty
 	@JsonIgnore
@@ -99,10 +100,6 @@ public class VertexAiGeminiChatOptions implements FunctionCallingOptions, ChatOp
 	@JsonIgnore
 	private Set<String> functions = new HashSet<>();
 
-	/**
-	 * The transport type to use for the Gemini Chat Client.
-	 */
-	private TransportType transportType = TransportType.GRPC;
 	// @formatter:on
 
 	public static Builder builder() {
@@ -148,6 +145,11 @@ public class VertexAiGeminiChatOptions implements FunctionCallingOptions, ChatOp
 			return this;
 		}
 
+		public Builder withModel(ChatModel model) {
+			this.options.setModel(model.getValue());
+			return this;
+		}
+
 		public Builder withFunctionCallbacks(List<FunctionCallback> functionCallbacks) {
 			this.options.functionCallbacks = functionCallbacks;
 			return this;
@@ -162,11 +164,6 @@ public class VertexAiGeminiChatOptions implements FunctionCallingOptions, ChatOp
 		public Builder withFunction(String functionName) {
 			Assert.hasText(functionName, "Function name must not be empty");
 			this.options.functions.add(functionName);
-			return this;
-		}
-
-		public Builder withTransportType(TransportType transportType) {
-			this.options.setTransportType(transportType);
 			return this;
 		}
 
@@ -257,14 +254,6 @@ public class VertexAiGeminiChatOptions implements FunctionCallingOptions, ChatOp
 		this.functions = functions;
 	}
 
-	public TransportType getTransportType() {
-		return this.transportType;
-	}
-
-	public void setTransportType(TransportType transportType) {
-		this.transportType = transportType;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -278,7 +267,6 @@ public class VertexAiGeminiChatOptions implements FunctionCallingOptions, ChatOp
 		result = prime * result + ((model == null) ? 0 : model.hashCode());
 		result = prime * result + ((functionCallbacks == null) ? 0 : functionCallbacks.hashCode());
 		result = prime * result + ((functions == null) ? 0 : functions.hashCode());
-		result = prime * result + ((transportType == null) ? 0 : transportType.hashCode());
 		return result;
 	}
 
@@ -345,9 +333,34 @@ public class VertexAiGeminiChatOptions implements FunctionCallingOptions, ChatOp
 		}
 		else if (!functions.equals(other.functions))
 			return false;
-		if (transportType != other.transportType)
-			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "VertexAiGeminiChatOptions [stopSequences=" + stopSequences + ", temperature=" + temperature + ", topP="
+				+ topP + ", topK=" + topK + ", candidateCount=" + candidateCount + ", maxOutputTokens="
+				+ maxOutputTokens + ", model=" + model + ", functionCallbacks=" + functionCallbacks + ", functions="
+				+ functions + ", getClass()=" + getClass() + ", getStopSequences()=" + getStopSequences()
+				+ ", getTemperature()=" + getTemperature() + ", getTopP()=" + getTopP() + ", getTopK()=" + getTopK()
+				+ ", getCandidateCount()=" + getCandidateCount() + ", getMaxOutputTokens()=" + getMaxOutputTokens()
+				+ ", getModel()=" + getModel() + ", getFunctionCallbacks()=" + getFunctionCallbacks()
+				+ ", getFunctions()=" + getFunctions() + ", hashCode()=" + hashCode() + ", toString()="
+				+ super.toString() + "]";
+	}
+
+	public static VertexAiGeminiChatOptions fromOptions(VertexAiGeminiChatOptions fromOptions) {
+		VertexAiGeminiChatOptions options = new VertexAiGeminiChatOptions();
+		options.setStopSequences(fromOptions.getStopSequences());
+		options.setTemperature(fromOptions.getTemperature());
+		options.setTopP(fromOptions.getTopP());
+		options.setTopK(fromOptions.getTopK());
+		options.setCandidateCount(fromOptions.getCandidateCount());
+		options.setMaxOutputTokens(fromOptions.getMaxOutputTokens());
+		options.setModel(fromOptions.getModel());
+		options.setFunctionCallbacks(fromOptions.getFunctionCallbacks());
+		options.setFunctions(fromOptions.getFunctions());
+		return options;
 	}
 
 }

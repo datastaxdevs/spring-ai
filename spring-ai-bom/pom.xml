@@ -124,11 +124,23 @@
                 <version>${project.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>org.springframework.ai</groupId>
+                <artifactId>spring-ai-minimax</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
 
             <!-- Vector Databses -->
             <dependency>
                 <groupId>org.springframework.ai</groupId>
-                <artifactId>spring-ai-azure-vector-store</artifactId>
+                <artifactId>spring-ai-azure-store</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.ai</groupId>
+                <artifactId>spring-ai-cassandra-store</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
@@ -158,13 +170,19 @@
 
             <dependency>
                 <groupId>org.springframework.ai</groupId>
-                <artifactId>spring-ai-pinecone</artifactId>
+                <artifactId>spring-ai-hanadb-store</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.springframework.ai</groupId>
-                <artifactId>spring-ai-redis</artifactId>
+                <artifactId>spring-ai-pinecone-store</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.ai</groupId>
+                <artifactId>spring-ai-redis-store</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
@@ -176,7 +194,7 @@
 
             <dependency>
                 <groupId>org.springframework.ai</groupId>
-                <artifactId>spring-ai-qdrant</artifactId>
+                <artifactId>spring-ai-qdrant-store</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
@@ -194,7 +212,7 @@
 
 			<dependency>
 				<groupId>org.springframework.ai</groupId>
-				<artifactId>spring-ai-gemfire</artifactId>
+				<artifactId>spring-ai-gemfire-store</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 
@@ -214,13 +232,19 @@
             <!-- Spring Boot Starters -->
             <dependency>
                 <groupId>org.springframework.ai</groupId>
+                <artifactId>spring-ai-apache-cassandra-store-spring-boot-starter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.ai</groupId>
                 <artifactId>spring-ai-azure-openai-spring-boot-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.springframework.ai</groupId>
-                <artifactId>spring-ai-azure-vector-store-spring-boot-starter</artifactId>
+                <artifactId>spring-ai-azure-store-spring-boot-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
@@ -272,11 +296,23 @@
                 <version>${project.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>org.springframework.ai</groupId>
+                <artifactId>spring-ai-hanadb-store-spring-boot-starter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
 			<dependency>
 				<groupId>org.springframework.ai</groupId>
 				<artifactId>spring-ai-watsonx-ai</artifactId>
 				<version>${project.version}</version>
 			</dependency>
+
+            <dependency>
+                <groupId>org.springframework.ai</groupId>
+                <artifactId>spring-ai-zhipuai</artifactId>
+                <version>${project.version}</version>
+            </dependency>
 
             <dependency>
                 <groupId>org.springframework.ai</groupId>
@@ -292,7 +328,7 @@
 
             <dependency>
                 <groupId>org.springframework.ai</groupId>
-                <artifactId>spring-ai-redis-spring-boot-starter</artifactId>
+                <artifactId>spring-ai-redis-store-spring-boot-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
@@ -358,6 +394,18 @@
             <dependency>
                 <groupId>org.springframework.ai</groupId>
                 <artifactId>spring-ai-elasticsearch-store-spring-boot-starter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.ai</groupId>
+                <artifactId>spring-ai-minimax-spring-boot-starter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.ai</groupId>
+                <artifactId>spring-ai-zhipuai-spring-boot-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
         </dependencies>

@@ -15,24 +15,25 @@
  */
 package org.springframework.ai.autoconfigure.vectorstore.redis;
 
+import org.springframework.ai.autoconfigure.CommonVectorStoreProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
  * @author Julien Ruaux
  */
 @ConfigurationProperties(RedisVectorStoreProperties.CONFIG_PREFIX)
-public class RedisVectorStoreProperties {
+public class RedisVectorStoreProperties extends CommonVectorStoreProperties {
 
 	public static final String CONFIG_PREFIX = "spring.ai.vectorstore.redis";
 
 	private String uri = "redis://localhost:6379";
 
-	private String index;
+	private String index = "default-index";
 
-	private String prefix;
+	private String prefix = "default:";
 
 	public String getUri() {
-		return uri;
+		return this.uri;
 	}
 
 	public void setUri(String uri) {
@@ -40,7 +41,7 @@ public class RedisVectorStoreProperties {
 	}
 
 	public String getIndex() {
-		return index;
+		return this.index;
 	}
 
 	public void setIndex(String name) {
@@ -48,7 +49,7 @@ public class RedisVectorStoreProperties {
 	}
 
 	public String getPrefix() {
-		return prefix;
+		return this.prefix;
 	}
 
 	public void setPrefix(String prefix) {

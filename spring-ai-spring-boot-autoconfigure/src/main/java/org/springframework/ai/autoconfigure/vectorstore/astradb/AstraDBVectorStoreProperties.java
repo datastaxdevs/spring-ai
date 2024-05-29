@@ -6,6 +6,8 @@ import lombok.Setter;
 import org.springframework.ai.vectorstore.AstraDBVectorStoreConfig;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
+import java.time.Duration;
+
 /**
  * Configuration for AstraDB.
  *
@@ -16,25 +18,20 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * {@code
  * spring.ai.astradb:
  *   token: token
- *   api-endpoint: apiEndpoint
+ *   api-endpoint: http://dbid-dbregion.apps.astra.datastax.com
  *   namespace: default_keyspace
+ *   verbose: true
+ *   request-timeout: 10s
  *   collection:
- *     name: collectionName
- *     dimension: 512
- *     similarity: COSINE
- *     indexing-deny: [content]
- *     timeout-millis: 100000
- *   http-client:
- *     http-version: 1.1
- *     http-redirect: NORMAL
- *     connect-timeout-seconds: 10
- *     read-timeout-second: 10
- *     proxy:
- *       host: localhost
- *       port: 8080
- *     retries:
- *       count: 3
- *       delays-millis: 100
+ *     name: my_collection
+ *     dimension: 1536
+ *     similarity: cosine
+ *     initialize-schema: true
+ *     indexing-deny: []
+ *     indexing-allow: []
+ *     embedding-provider: openai
+ *     embedding-model: text-embedding-ada-002
+ *     default-id: uuid
  * }
  * </pre>
  *
@@ -62,50 +59,41 @@ public class AstraDBVectorStoreProperties {
 	 */
 	private String namespace;
 
-	/** Configuration for the client. */
-	private HttpClientConfig httpClient;
+	/**
+	 * Enabling logging
+	 */
+	private boolean verbose = false;
 
-	/** Configuration for the collection. */
-	private AstraDBVectorStoreConfig collection;
+	/**
+	 * Initialize Schema
+	 */
+	private boolean initializeSchema = true;
 
-	@Getter
-	@Setter
-	@NoArgsConstructor
-	public static class HttpClientConfig {
-
-		private String httpVersion;
-
-		private String httpRedirect;
-
-		private int connectTimeoutSeconds;
-
-		private int readTimeoutSeconds;
-
-		private Proxy proxy;
-
-		private Retries retries;
-
-	}
+	/**
+	 * Configuration for the collection.
+	 */
+	private CollectionConfig collection;
 
 	@Getter
 	@Setter
 	@NoArgsConstructor
-	public static class Proxy {
+	public static class CollectionConfig {
 
-		private String host;
+		private String name;
 
-		private int port;
+		private Integer dimension;
 
-	}
+		private String similarity;
 
-	@Getter
-	@Setter
-	@NoArgsConstructor
-	public static class Retries {
+		private String defaultId;
 
-		private int count;
+		private String[] indexingDeny;
 
-		private int delaysMillis;
+		private String[] indexingAllow;
+
+		private String embeddingProvider;
+
+		private String embeddingModel;
 
 	}
 
